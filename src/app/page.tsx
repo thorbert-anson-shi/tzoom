@@ -1,4 +1,4 @@
-import FileSubmissionArea from "@/components/file-submission-area";
+import FileSubmissionPanel from "@/components/file-submission-panel";
 import TestArea from "@/components/test-area";
 import Image from "next/image";
 
@@ -14,7 +14,7 @@ export default function Home() {
             id="statistics"
             className="flex flex-1 border border-black"
           ></div>
-          <FileSubmissionArea />
+          <FileSubmissionPanel />
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-export default function FileSubmissionArea() {
+export default function FileSubmissionPanel() {
   const handleFormSubmit = async (formData: FormData) => {
     "use server";
     const rawFormData = {
