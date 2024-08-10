@@ -28,7 +28,7 @@ export default function FileSubmissionPanel() {
         <div id="button-group" className="flex flex-row space-x-3 md:space-x-5">
           <label
             htmlFor="text-submit"
-            className="flex-1 cursor-pointer border border-black p-3 text-center md:p-5"
+            className="default-font flex-1 cursor-pointer border border-black p-3 text-center md:p-5"
           >
             Browse files
           </label>
@@ -41,7 +41,7 @@ export default function FileSubmissionPanel() {
           />
           <button
             type="submit"
-            className="flex-1 border border-black p-3 md:p-5"
+            className="default-font flex-1 border border-black p-3 md:p-5"
           >
             Submit file for review
           </button>

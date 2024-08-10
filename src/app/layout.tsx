@@ -30,7 +30,7 @@ export default function RootLayout({
           <Image src={threeLines} width={20} height={20} alt="Open menu" />
           <div
             id="Account section"
-            className="flex flex-row space-x-1 py-1 pl-2 hover:bg-neutral-300 md:space-x-2 md:py-2 md:pl-4 md:pr-2"
+            className="flex cursor-pointer flex-row space-x-1 py-1 pl-2 hover:bg-neutral-300 md:space-x-2 md:py-2 md:pl-4 md:pr-2"
           >
             <div className="flex flex-col justify-end -space-y-1 text-right">
               <h1>Account name</h1>
