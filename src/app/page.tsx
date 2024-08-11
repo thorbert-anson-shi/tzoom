@@ -1,6 +1,6 @@
 import FileSubmissionPanel from "@/components/file-submission-panel";
 import StatisticsPanel from "@/components/statistics-panel";
-import TestArea from "@/components/test-area";
+import TestArea from "@/components/test-panel";
 import Image from "next/image";
 
 export default function Home() {
