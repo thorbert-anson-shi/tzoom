@@ -1,33 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchText } from "../app/data";
 
 export default function TestPanel() {
   const [words, setWords] = useState([]);
 
-  const [wordIdx, setWordIdx] = useState(0);
-
-  useEffect(() => {
-    const texts = fetchText();
-    console.log(texts);
-  }, []);
-
   return (
-    <>
-      <div className="flex h-full w-full flex-col items-center justify-center">
-        <div id="words" className="m-5 md:m-10">
-          {words.map((word, index) => (
+    <div
+      id="panel"
+      className="flex h-full w-full flex-col items-center justify-between p-3 md:p-5"
+    >
+      <div id="words" className="m-5 md:m-10">
+        {words.length > 0 ? (
+          words.map((word, index) => (
             <span key={index} className="inline">
-              <h1 className="inline">{word} </h1>
+              <h1 className="inline">{word}</h1>
             </span>
-          ))}
-        </div>
+          ))
+        ) : (
+          <h1>No words found</h1>
+        )}
+      </div>
+      <span className="border border-black p-3 md:space-x-3 md:p-5">
         <input
           type="text"
-          className="default-font border-b border-black bg-transparent outline-none hover:outline-1 hover:outline-gray-500"
+          className="default-font h-full border-b border-b-black bg-transparent outline-none"
         />
-      </div>
-    </>
+        <button
+          id="restart"
+          className="default-font border border-black hover:bg-neutral-300 md:p-3"
+        >
+          Restart
+        </button>
+      </span>
+    </div>
   );
 }
