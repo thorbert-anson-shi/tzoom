@@ -27,6 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex h-screen w-screen flex-col">
+        <SpeedInsights />
         <nav className="flex h-fit w-full flex-row items-center justify-between border-b border-black px-3 py-1 md:px-5 md:py-3">
           <Image src={threeLines} width={20} height={20} alt="Open menu" />
           <div
