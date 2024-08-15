@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 
 let prisma = new PrismaClient();
 
-export async function fetchText({ mode, length, category }: { mode: string, length: number, category?: string }) {
+export async function fetchWords({ mode, length, category }: { mode: string, length: number, category?: string }) {
   const texts = await prisma.text.findMany({
     include: {
       sentences: true,
@@ -22,14 +22,16 @@ export async function fetchText({ mode, length, category }: { mode: string, leng
     // Get quote of free length
     if (length === -1) {
       quote = text.sentences.slice(quoteIdx, quoteIdx + 3);
+      // Get quote of specified length
     } else {
       let i = 0;
-      // Search through 3 texts before giving up
+      // Search through 3 texts before giving up on search
       while (i < 3) {
         let lp = quoteIdx, rp = quoteIdx + 3, j = 0;
         quote = text.sentences.slice(lp, rp);
 
         let found = false;
+        // Search through 100 sentences before giving up on text
         while (j < 100) {
           let quoteLength = quote.reduce((acc, curr) => acc + curr.length, 0);
 
@@ -61,20 +63,25 @@ export async function submitText(text: { title: string, author: string, content:
   // Upload whole texts to db
   let textResponse;
 
+  // Split text into sentences to store in db
+  let sentences = text.content.split(/(?<=[\.!?])( )/);
+
   try {
     textResponse = await prisma.text.create({
       data: {
         title: text.title,
         author: text.author,
         content: text.content,
+        sentences: {
+          create: sentences.map((sentence) => {
+            return { content: sentence, length: sentence.length }
+          })
+        }
       },
     });
   } catch (e) {
     return NextResponse.json({ error: e }, { status: 500 });
   }
-
-  // Split text into sentences to store in db
-  let sentences = text.content.split(/(?<=[\.!?])( )/);
 
   // Update word count on db
   try {
