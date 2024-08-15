@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { modes, lengths } from "./test-panel";
 
-export enum Modes {
-  words = 0,
-  quotes,
-  freetype,
+interface ChoicesPanelProps {
+  mode: string;
+  length: number;
+  setMode: (mode: string) => void;
+  setLength: (length: number) => void;
 }
 
-export default function ChoicesPanel() {
-  const [mode, setMode] = useState("words");
+export default function ChoicesPanel({
+  mode,
+  length,
+  setMode,
+  setLength,
+}: ChoicesPanelProps) {
   return (
     <>
       <div
@@ -16,19 +21,41 @@ export default function ChoicesPanel() {
       >
         <div
           id="mode-container"
-          className="flex flex-row justify-between space-x-3 border border-black p-3 md:space-x-5 md:p-5"
+          className="flex flex-row justify-between space-x-3 border border-black p-1 md:space-x-5 md:p-3"
         >
-          <button id="words">Words</button>
-          <button id="quotes">Quotes</button>
-          <button id="freetype">Freetype</button>
+          {/* Mode selector */}
+          {modes.map((m, index) => {
+            return (
+              <button
+                key={index}
+                id={`${m}-mode-selector`}
+                onClick={() => setMode(m)}
+                className={`default-font px-1 py-1 hover:bg-neutral-300 md:px-3 ${m === mode ? "selected" : ""}`}
+              >
+                {m.toLowerCase()}
+              </button>
+            );
+          })}
         </div>
         <div
           id="length-container"
-          className="flex flex-row justify-between space-x-3 border border-black p-3 md:space-x-5 md:p-5"
+          className="flex flex-row justify-between space-x-3 border border-black p-1 md:space-x-5 md:p-3"
         >
-          <button id="25">Short</button>
-          <button id="50">Medium</button>
-          <button id="100">Long</button>
+          {/* Length selector */}
+          {Object.entries(lengths).map(([key, value]) => {
+            return (
+              <button
+                id={`${key}-length-selector`}
+                key={`${key}-${value}`}
+                onClick={(e) => {
+                  setLength(value);
+                }}
+                className={`default-font px-1 py-1 hover:bg-neutral-300 md:px-3 ${length === value ? "selected" : ""}`}
+              >
+                {key}
+              </button>
+            );
+          })}
         </div>
       </div>
     </>

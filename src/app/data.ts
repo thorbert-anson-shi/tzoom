@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 
 let prisma = new PrismaClient();
 
-export async function fetchText({ mode, category, length }: { mode: string, category: string, length: number }) {
+export async function fetchText({ mode, length, category }: { mode: string, length: number, category?: string }) {
   const texts = await prisma.text.findMany({
     include: {
       sentences: true,

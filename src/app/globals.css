@@ -23,3 +23,8 @@ h2 {
 .default-font {
   font-family: var(--primary-font);
 }
+
+.selected {
+  color: white;
+  background-color: black;
+}
