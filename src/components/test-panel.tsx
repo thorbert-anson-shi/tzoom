@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ChoicesPanel from "./choices-panel";
-import { fetchText } from "@/app/data";
+import { fetchWords } from "@/app/data";
 
 export const modes = ["words", "quotes", "freetype"];
 export const lengths = {
@@ -53,7 +53,7 @@ export default function TestPanel() {
           id="restart"
           className="default-font border border-black hover:bg-neutral-300 md:p-3"
           onClick={() => {
-            fetchText({ mode, length });
+            fetchWords({ mode, length });
           }}
         >
           Restart
