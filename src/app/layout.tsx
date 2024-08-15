@@ -3,6 +3,7 @@ import "./globals.css";
 import Image from "next/image";
 import threeLines from "@/assets/three-lines.svg";
 import profilePlaceholder from "@/assets/profile-placeholder.svg";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "TZoom",
