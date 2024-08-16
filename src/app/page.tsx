@@ -1,9 +1,14 @@
-import FileSubmissionPanel from "@/components/file-submission-panel";
+"use client";
+
+import FileSubmissionPanel, {
+  FileSubmissionModal,
+} from "@/components/file-submission-panel";
 import StatisticsPanel from "@/components/statistics-panel";
 import TestArea from "@/components/test-panel";
-import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [modalIsOpen, setModalOpen] = useState<boolean>(false);
   return (
     <>
       <div className="z-0 flex h-screen w-screen flex-col space-y-5 p-3 md:p-5">
@@ -12,9 +17,13 @@ export default function Home() {
         </div>
         <div id="bottom" className="flex h-1/2 flex-row space-x-3 md:space-x-5">
           <StatisticsPanel />
-          <FileSubmissionPanel />
+          <FileSubmissionPanel setModalOpen={setModalOpen} />
         </div>
       </div>
+      <FileSubmissionModal
+        setModalOpen={setModalOpen}
+        modalIsOpen={modalIsOpen}
+      />
     </>
   );
 }
