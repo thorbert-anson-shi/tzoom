@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/globals.css";
 import Image from "next/image";
 import threeLines from "@/assets/three-lines.svg";
 import profilePlaceholder from "@/assets/profile-placeholder.svg";
