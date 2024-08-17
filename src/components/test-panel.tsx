@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ChoicesPanel from "./choices-panel";
-import { fetchWords } from "@/app/data";
+import { fetchWords } from "@/utils/data";
 
 export const modes = ["words", "quotes", "freetype"];
 export const lengths = {
