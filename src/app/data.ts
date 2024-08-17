@@ -1,6 +1,6 @@
 "use server";
 
-import { PrismaClient, Sentence } from '@prisma/client';
+import { PrismaClient, Sentence, User } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 let prisma = new PrismaClient();
@@ -59,19 +59,20 @@ export async function fetchWords({ mode, length, category }: { mode: string, len
   }
 }
 
-export async function submitText(text: { title: string, author: string, content: string }) {
+export async function submitText(textData: { title: string, author: string, uploader: User, content: string }) {
   // Upload whole texts to db
   let textResponse;
 
   // Split text into sentences to store in db
-  let sentences = text.content.split(/(?<=[\.!?])( )/);
+  let sentences = textData.content.split(/(?<=[\.!?])( )/);
 
   try {
     textResponse = await prisma.text.create({
       data: {
-        title: text.title,
-        author: text.author,
-        content: text.content,
+        title: textData.title,
+        author: textData.author,
+        uploader: { connect: { id: textData.uploader.id } },
+        content: textData.content,
         sentences: {
           create: sentences.map((sentence) => {
             return { content: sentence, length: sentence.length }
@@ -85,7 +86,7 @@ export async function submitText(text: { title: string, author: string, content:
 
   // Update word count on db
   try {
-    text.content.split(" ").forEach((word) => {
+    textData.content.split(" ").forEach((word) => {
       // Get rid of unwanted characters still stuck onto words
       word = word.replace(/[!?"',:;0-9]/, "");
 

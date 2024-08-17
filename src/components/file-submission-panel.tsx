@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 interface FileSubmissionPanelProps {
   setModalOpen: (isOpen: boolean) => void;
 }
@@ -75,11 +77,17 @@ export function FileSubmissionModal({
   setModalOpen,
 }: FileSubmissionModalProps) {
   async function submitText(formData: FormData) {
+    let uploader = null;
+
     const rawFormData = {
       title: formData.get("title"),
+      author: formData.get("author"),
       description: formData.get("description"),
       anonymous: formData.get("anonymous"),
     };
+
+    if (rawFormData.anonymous) {
+    }
   }
 
   return (
