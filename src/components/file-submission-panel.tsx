@@ -1,4 +1,5 @@
-import { User } from "@prisma/client";
+import trashcan from "@/assets/icons8-delete.svg";
+import Image from "next/image";
 
 interface FileSubmissionPanelProps {
   setModalOpen: (isOpen: boolean) => void;
@@ -13,12 +14,33 @@ export default function FileSubmissionPanel({
       className="flex flex-1 flex-col space-y-3 border border-black p-3 md:space-y-5 md:p-5"
     >
       <h1>Submit a text</h1>
+
       <div className="flex h-full flex-col space-y-3 md:space-y-5">
         <div
           id="preview-box"
-          className="h-64 overflow-scroll border border-black p-3 md:h-56 md:p-5"
+          className="relative h-64 overflow-y-scroll border border-black p-3 md:h-56 md:p-5"
         >
-          <h2 id="preview">No text to preview</h2>
+          <div className="h-full">
+            <h2 id="preview" className="inline-block h-4/5">
+              No text to preview
+            </h2>
+            <span className="sticky bottom-0 flex flex-row justify-end">
+              <button
+                className="border border-black bg-white hover:bg-red-300"
+                title="Remove submitted text"
+                onClick={() => {
+                  document.getElementById("preview")!.innerHTML =
+                    "No text to preview";
+                }}
+              >
+                <Image
+                  src={trashcan}
+                  alt="remove selected text"
+                  className="size-10 p-2 md:size-[3rem] md:p-3"
+                />
+              </button>
+            </span>
+          </div>
         </div>
         <div
           id="button-group"
