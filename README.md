@@ -13,3 +13,5 @@ Built and maintained by [thorbert-anson-shi](https://github.com/thorbert-anson-s
 
 - Support for multiple languages
 - Support for user defined themes and color palettes
+
+For contribution inquiries, contact me via email at tobyas2005139@gmail.com
