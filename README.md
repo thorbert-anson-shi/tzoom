@@ -1,4 +1,4 @@
-# TZoom
+# TZoom (WIP)
 
 **A typing test made with simplicity in mind**\
 Built and maintained by [thorbert-anson-shi](https://github.com/thorbert-anson-shi) using [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io/)
